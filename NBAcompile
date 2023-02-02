@@ -1,0 +1,62 @@
+#This is my class that defines the key components of what will be used in the program
+class Player:  
+    def __init__(self,name, jersey, ppg, rebound):
+      self.name = name
+      self.jersey= jersey
+      self.ppg = ppg
+      self.rebound = rebound
+        
+mylist = []
+print("This is a NBA Compiler")
+#Above is the list that keeps track of the inputs
+#Below is my while loop that keeps the program running until the user decides to leave
+while True:
+  print("Please type the number of your selection below.")
+  print("1:Add Player")
+  print("2:Remove Player")
+  print("3:Find Best PPG")
+  print("4:Find Highest Rebounds")
+  print("5:Print Players")
+  print("6:Exit")
+  choice=input()
+  ###Below is my If/Else statements that are used depending on the users input
+  if choice =='1':
+    name=input("What is the name of your player?")
+    jersey=int(input("What jersey number is your player?"))
+    ppg=float(input("What is the players points per game?"))
+    rebound=float(input("What is the players rebounds per game?"))
+    mylist.append(Player(name,jersey,ppg,rebound))
+    
+  elif choice=='2':
+    print()
+    for p in mylist:
+      print(f"{mylist.index(p)+1}:{p.name}")
+    remove=int(input("Type in the number for the player you want to remove.\n"))
+    del mylist[remove-1]
+    
+  elif choice=='3':
+    for p in mylist:
+      if p.ppg>mylist[mylist.index(p)-1].ppg:
+        max=p.ppg
+        pname=p.name
+    print("The player with the highest points per game is",pname,"with an average of",str(max)+".\n")
+    
+  elif choice=='4':
+    for p in mylist:
+      if p.rebound>mylist[mylist.index(p)-1].rebound:
+        maxr=p.rebound
+        pname=p.name
+    print("The player with the highest rebounding is",pname,"with an average of",str(maxr)+".\n")
+    
+  elif choice=='5':
+    for p in mylist:
+      print(f"{mylist.index(p)+1}:{p.name} {p.jersey}")
+      print()
+      
+  elif choice=='6':
+    print("Have a good day!")
+    break
+    
+  else:
+    print("Incorrect input, please try again.")
+#I also added a feature so you can't enter something other than the numbers listed
